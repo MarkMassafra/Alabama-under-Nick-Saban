@@ -1,0 +1,60 @@
+#Web Scrape Code for 2013-2022 Rosters
+
+#imports libraries needed
+from bs4 import BeautifulSoup
+import requests
+import openpyxl
+
+#creates a function that pulls all the player information from the defined urls and is placed into a new sheet for every year, with headers for each sheet
+def scrape_and_save(urls,sheets):
+    source = requests.get(url)
+    source.raise_for_status()
+    soup = BeautifulSoup(source.text, 'html.parser')
+    player_info = soup.find('div', class_='sidearm-roster-default-template')
+    player_info2 = player_info.find_all('li', class_='sidearm-roster-player')
+
+    headers = ['Hometown','Class','Position','Height','Weight','Name']
+    sheet.append(headers)
+    
+    #parsing through html tags and stripping whitespace in player_info2 list
+    for player in player_info2:
+        player_hometown = player.find('span', class_='sidearm-roster-player-hometown').text.strip()
+        player_class = player.find('span', class_='sidearm-roster-player-academic-year').text.strip()
+        player_position = player.find('span', class_="text-bold").text.strip()
+        player_height = player.find('span', class_="sidearm-roster-player-height").text.strip()
+        player_weight = player.find('span', class_="sidearm-roster-player-weight").text.strip()
+        player_name = player.find('div', class_="sidearm-roster-player-name").h3.a.text.strip()
+
+        sheet.append([player_hometown, player_class, player_position, player_height, player_weight, player_name])
+
+workbook = openpyxl.Workbook()
+
+urls = ['https://rolltide.com/sports/football/roster/2013',
+        'https://rolltide.com/sports/football/roster/2014',
+        'https://rolltide.com/sports/football/roster/2015',
+        'https://rolltide.com/sports/football/roster/2016',
+        'https://rolltide.com/sports/football/roster/2017',
+        'https://rolltide.com/sports/football/roster/2018',
+        'https://rolltide.com/sports/football/roster/2019',
+        'https://rolltide.com/sports/football/roster/2020',
+        'https://rolltide.com/sports/football/roster/2021',
+        'https://rolltide.com/sports/football/roster/2022']
+sheets = [workbook.create_sheet(title=str(2013), index=0),
+          workbook.create_sheet(title=str(2014), index=1),
+          workbook.create_sheet(title=str(2015), index=2),
+          workbook.create_sheet(title=str(2016), index=3),
+          workbook.create_sheet(title=str(2017), index=4),
+          workbook.create_sheet(title=str(2018), index=5),
+          workbook.create_sheet(title=str(2019), index=6),
+          workbook.create_sheet(title=str(2020), index=7),
+          workbook.create_sheet(title=str(2021), index=8),
+          workbook.create_sheet(title=str(2022), index=9)]
+
+for url, sheet in zip(urls, sheets):
+    scrape_and_save(url, sheet)
+
+workbook.save('football_roster.xlsx')
+
+
+
+
