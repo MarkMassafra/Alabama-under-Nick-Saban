@@ -1,0 +1,330 @@
+#Change 1:
+#Changed height from feet'inches to total in inches. Example: 6'1 to 73.
+
+#First Sheet of new Excel File
+import pandas as pd
+
+#creat a function that splits the height based on the apostrophe. returns the height in inches
+def convert_to_inches(height):
+    feet, inches = height.split("'")
+    if inches.strip() == "":
+        return int(feet)*12
+    else:
+        return int(feet)*12 + int(inches.strip())
+    return total_inches
+    
+# Load the sheet into a dataframe
+df = pd.read_excel('/Users/markmassafra/Desktop/alabama/football_roster.xlsx', sheet_name=1)
+# Apply the convert_to_inches function to the height column
+df['Height'] = df['Height'].apply(convert_to_inches)
+# Save the modified sheet to a new excel file
+df.to_excel('/Users/markmassafra/Desktop/Heights_changedV2.xlsx', index=False)
+
+#Change 1 continued
+#Subsequent sheets to Heights_changedV2.xlsx
+
+import pandas as pd
+#create a function that splits the height based on the apostrophe. returns the height in inches
+def convert_to_inches(height):
+    feet, inches = height.split("'")
+    if inches.strip() == "":
+        return int(feet)*12
+    else:
+        return int(feet)*12 + int(inches.strip())
+    return total_inches
+
+# Load the sheet into a dataframe
+df = pd.read_excel('/Users/markmassafra/Desktop/alabama/football_roster.xlsx', sheet_name=sheet_index)
+# Apply the convert_to_inches function to the height column
+df['Height'] = df['Height'].apply(convert_to_inches)
+# Write the original sheet to the output file
+with pd.ExcelWriter('/Users/markmassafra/Desktop/Heights_changedV2.xlsx', engine='openpyxl', mode='a') as writer:
+    df.to_excel(writer, sheet_name='new_sjeet_name', index=False)
+
+
+#Change 2
+#Changed Hometowns from city,state to 2 Letter Postal abbreviation. Example: Calera, Ala to AL.
+
+import pandas as pd
+#create a function that splits the hometown based on a comma. returns the hometown in 2 letter postal abbreviation format.
+def hometown_change(hometown):
+    if ',' in hometown:
+        state = hometown.split(',')[1].strip()
+    else:
+        state = hometown.strip()
+    if len(state) == 2:
+        return state
+    else:
+        if state == 'Ala':
+            return 'AL'
+        elif state == 'AL':
+            return 'AL'
+        elif state == 'GA':
+            return 'GA'
+        elif state == 'LA':
+            return 'LA'
+        elif state == 'NJ':
+            return 'NJ'
+        elif state == 'FL':
+            return 'FL'
+        elif state == 'Fla':
+            return 'FL'
+        elif state == 'SC':
+            return 'SC'
+        elif state == 'La':
+            return 'LA'
+        elif state == 'Texas':
+            return 'TX'
+        elif state == 'Tenn':
+            return 'TN'
+        elif state == 'Ga':
+            return 'GA'
+        elif state == 'Ohio':
+            return 'OH'
+        elif state == 'NC':
+            return 'NC'
+        elif state == 'Md':
+            return 'MD'
+        elif state == 'Calif':
+            return 'CA'
+        elif state == 'Colo':
+            return 'CO'
+        elif state == 'Ark':
+            return 'AR'
+        elif state == 'Conn':
+            return 'CT'
+        elif state == 'Pa':
+            return 'PA'
+        elif state == 'Utah':
+            return 'UT'
+        elif state == 'Va':
+            return 'VA'
+        elif state == 'Miss':
+            return 'MS'
+        elif state == 'VA':
+            return 'VA'
+        elif state == 'Mich':
+            return 'MI'
+        elif state == 'Iowa':
+            return 'IA'
+        elif state == 'Mexico':
+            return 'International'
+        elif state == 'Ky':
+            return 'KY'
+        elif state == 'Mo':
+            return 'MO'
+        elif state == 'Ariz':
+            return 'AZ'
+        elif state == 'Okla':
+            return 'OK'
+        elif state == 'DC':
+            return 'Washington DC'
+        elif state == 'NY':
+            return 'NY'
+        elif state == 'Minn':
+            return 'MN'
+        elif state == "Hawai'i":
+            return 'HI'
+        elif state == 'Ind':
+            return 'IN'
+        elif state == 'Ill':
+            return 'IL'
+        elif state == 'Nev':
+            return 'NV'
+        elif state == 'Wis':
+            return 'WI'
+        elif state == 'Victoria AU':
+            return 'International'
+        elif state == 'Canada':
+            return 'International'
+
+# Load the sheet into a dataframe
+df = pd.read_excel('/Users/markmassafra/Desktop/Heights_changedV2.xlsx', sheet_name=3)
+# Apply the hometown_change function to the hometown column
+df['Hometown'] = df['Hometown'].apply(hometown_change)
+
+#Change 2 continued
+
+import pandas as pd
+#create a function that splits the hometown based on a comma. returns the hometown in 2 letter postal abbreviation format.
+def hometown_change(hometown):
+    if ',' in hometown:
+        state = hometown.split(',')[1].strip()
+    else:
+        state = hometown.strip()
+    if len(state) == 2:
+        return state
+    else:
+        if state == 'Ala':
+            return 'AL'
+        elif state == 'AL':
+            return 'AL'
+        elif state == 'GA':
+            return 'GA'
+        elif state == 'LA':
+            return 'LA'
+        elif state == 'NJ':
+            return 'NJ'
+        elif state == 'FL':
+            return 'FL'
+        elif state == 'Fla':
+            return 'FL'
+        elif state == 'SC':
+            return 'SC'
+        elif state == 'La':
+            return 'LA'
+        elif state == 'Texas':
+            return 'TX'
+        elif state == 'Tenn':
+            return 'TN'
+        elif state == 'Ga':
+            return 'GA'
+        elif state == 'Ohio':
+            return 'OH'
+        elif state == 'NC':
+            return 'NC'
+        elif state == 'Md':
+            return 'MD'
+        elif state == 'Calif':
+            return 'CA'
+        elif state == 'Colo':
+            return 'CO'
+        elif state == 'Ark':
+            return 'AR'
+        elif state == 'Conn':
+            return 'CT'
+        elif state == 'Pa':
+            return 'PA'
+        elif state == 'Utah':
+            return 'UT'
+        elif state == 'Va':
+            return 'VA'
+        elif state == 'Miss':
+            return 'MS'
+        elif state == 'VA':
+            return 'VA'
+        elif state == 'Mich':
+            return 'MI'
+        elif state == 'Iowa':
+            return 'IA'
+        elif state == 'Mexico':
+            return 'International'
+        elif state == 'Ky':
+            return 'KY'
+        elif state == 'Mo':
+            return 'MO'
+        elif state == 'Ariz':
+            return 'AZ'
+        elif state == 'Okla':
+            return 'OK'
+        elif state == 'DC':
+            return 'Washington DC'
+        elif state == 'NY':
+            return 'NY'
+        elif state == 'Minn':
+            return 'MN'
+        elif state == "Hawai'i":
+            return 'HI'
+        elif state == 'Ind':
+            return 'IN'
+        elif state == 'Ill':
+            return 'IL'
+        elif state == 'Nev':
+            return 'NV'
+        elif state == 'Wis':
+            return 'WI'
+        elif state == 'Victoria AU':
+            return 'International'
+        elif state == 'Canada':
+            return 'International'
+
+# Load the sheet into a dataframe
+df = pd.read_excel('/Users/markmassafra/Desktop/Heights_changedV2.xlsx', sheet_name=3)
+# Apply the hometown_change function to the hometown column
+df['Hometown'] = df['Hometown'].apply(hometown_change)
+# Write the original sheet to the output file
+with pd.ExcelWriter('/Users/markmassafra/Desktop/HometownsV3.xlsx', engine='openpyxl', mode='a') as writer:
+    df.to_excel(writer, sheet_name='2010', index=False)
+
+#Change 3
+#Changed name format from last_name, first_name to first_name last_name for sheets 2007,2008,2009,2010
+
+#First Sheet
+import pandas as pd
+
+def name_change(name):
+    if ',' in name:
+        last_name, first_name = name.split(',')
+        return f"{first_name.strip()} {last_name.strip()}"
+    else:
+        return name.strip()
+
+# Load the sheet into a dataframe
+df = pd.read_excel('/Users/markmassafra/Desktop/HometownsV3.xlsx', sheet_name=0)
+# Apply the name_change function to the name column
+df['Name'] = df['Name'].apply(name_change)
+# Write the original sheet to the output file
+df.to_excel('/Users/markmassafra/Desktop/V4.xlsx', index=False)
+
+#Subsequent Sheets
+
+import pandas as pd
+
+def name_change(name):
+    if ',' in name:
+        last_name, first_name = name.split(',')
+        return f"{first_name.strip()} {last_name.strip()}"
+    else:
+        return name.strip()
+
+# Load the sheet into a dataframe
+df = pd.read_excel('/Users/markmassafra/Desktop/HometownsV3.xlsx', sheet_name=sheet_index)
+# Apply the name_change function to the name column
+df['Name'] = df['Name'].apply(name_change)
+# Write the original sheet to the output file
+with pd.ExcelWriter('/Users/markmassafra/Desktop/V4.xlsx', engine='openpyxl', mode='a') as writer:
+    df.to_excel(writer, sheet_name='sheet_name', index=False)
+
+#Change 3 continued
+#copied unmodified sheets (2011-2022) from HometownsV3.xlsx to the new sheet, V4.xlsx
+
+import pandas as pd
+
+sheet_names = ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022']
+# read the Excel file with the sheets to be copied
+src_df = pd.read_excel('/Users/markmassafra/Desktop/HometownsV3.xlsx', sheet_name=sheet_names)
+# Append the copied sheets to the destination Excel file
+with pd.ExcelWriter("/Users/markmassafra/Desktop/V4.xlsx", mode='a') as writer:
+    for sheet_name, sheet_data in src_df.items():
+        sheet_data.to_excel(writer, sheet_name=sheet_name, index=False)
+
+
+#Change 4
+#Saved each sheet as a separate CSV to be imported into PgAdmin
+
+import openpyxl
+import csv
+
+directory_path = '/Users/markmassafra/desktop/'
+
+# Open the Excel file
+wb = openpyxl.load_workbook('/Users/markmassafra/desktop/V4.xlsx')
+
+# Loop through each sheet in the workbook
+for sheet_name in wb.sheetnames:
+    sheet = wb[sheet_name]
+    # Construct the name of the CSV file
+    csv_file_name = directory_path + sheet_name + '.csv'
+
+    # Create a new CSV file with the name constructed above
+    csv_file = open(csv_file_name, 'w', newline='')
+    writer = csv.writer(csv_file)
+
+    # Loop through each row in the sheet and write it to the CSV file
+    for row in sheet.iter_rows(values_only=True):
+        writer.writerow(row)
+
+    # Close the CSV file
+    csv_file.close()
+
+
