@@ -1,8 +1,5 @@
 added data from python csv files
 
-
-
-
 #Table 1 - Players information
 
 CREATE TABLE Players(
