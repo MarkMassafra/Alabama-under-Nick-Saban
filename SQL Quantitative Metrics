@@ -1,15 +1,17 @@
-##########
+#######################################
 Percent of team w/ 4 & 5 stars by year:
-##########
+#######################################
+
 SELECT 
 CEIL((COUNT(CASE WHEN recruiting_stars IN ('4','5') THEN 1 END)/COUNT(*)::NUMERIC)*100) AS percent_by_roster, season
 FROM players
 GROUP BY season
 ORDER BY 1 desc
 
-#########
+#############################################################
 Percent of team w/ 4 & 5 stars on offense vs defense by year:
-##########
+#############################################################
+
 WITH offensive_bluechips AS (
   SELECT *
   FROM offensive_players
@@ -46,9 +48,10 @@ FROM
   JOIN total_players ON combined_counts.season = total_players.season
 ORDER BY combined_counts.season ASC
 
-##########
+################################################
 Count of 4,5 star players by home state by year:
-##########
+################################################
+
 SELECT COUNT(*),home_state, season
 FROM bluechip_recruits
 GROUP BY 2,3
