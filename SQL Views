@@ -1,42 +1,42 @@
-##########
+#################
 Offensive Players
-##########
+#################
 
 CREATE VIEW offensive_players as (
 SELECT * 
 FROM players
 WHERE position IN ('FB','WR/RB','RB/WR','TE/OL','RG','WR','OL','TE','RB/TE','RB','ATH','QB')
 
-##########
+#################
 Defensive Players
-##########
+#################
 
 CREATE VIEW defensive_players as (
 SELECT * 
 FROM players
 WHERE position IN ('DE','DB','LB','DL','LCB','SS')
 
-##########
+#####################
 Special Teams Players
-##########
+#####################
 
 CREATE VIEW special_teams_players as (
 SELECT * 
 FROM players
 WHERE position IN ('ST','LS','PK','KP','K','SN','PK/P','P','P/PK')
 
-##########
+############################################
 Blue chip Recruits - players w/ 4 or 5 stars
-##########
+############################################
 
 CREATE VIEW blue_chip as (
 SELECT * 
 FROM players
 WHERE recruiting_stars IN ('4','5')
 
-##########
+#####################
 Upperclassmen Players
-##########
+#####################
 
 CREATE VIEW upperclassmen as (
 SELECT * 
