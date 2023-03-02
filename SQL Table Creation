@@ -1,6 +1,8 @@
 added data from python csv files
 
-#Table 1 - Players information
+#############################
+Table 1 - Players information
+#############################
 
 CREATE TABLE Players(
 home_state varchar(20),
@@ -18,7 +20,9 @@ ADD COLUMN recruiting_stars varchar(10);
 ALTER TABLE players
 ADD COLUMN season date;
 
-#Table 2 - Alabama Year by Year Breakdown
+########################################
+Table 2 - Alabama Year by Year Breakdown
+########################################
 
 CREATE TABLE year_breakdown(
 season date,
@@ -49,7 +53,9 @@ VALUES
 
 Note: Table 1 and Table 2 can be joined on season column
 
-#Table 3 - Top 10 Winngest Teams since 2007 records
+##################################################
+Table 3 - Top 10 Winngest Teams since 2007 records
+##################################################
 
 CREATE TABLE record_since_2007(
 team varchar(20),
