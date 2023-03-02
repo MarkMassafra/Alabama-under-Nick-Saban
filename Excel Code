@@ -1,1 +1,30 @@
-sfsfgfgs
+Changed name column: from first_name last_name to last_name, first_name format
+ #############
+=PROPER(RIGHT(A1,LEN(A1)-FIND(" ",A1))&", "&LEFT(A1,FIND(" ",A1)-1))
+
+#############
+Changed height column: Converted height from 6’4” to 6’4:
+#############
+=LEFT(L1,LEN(A1)-1)
+
+#############
+Changed height column: Converted height from 6-4 to 6’4
+#############
+=LEFT(A1,FIND("-",A1)-1)&"'"&RIGHT(A1,LEN(A1)-FIND("-",A1))
+
+#############
+Changed weight column: Strip lbs after the numeric weight
+#############
+=LEFT(A1,LEN(A1)-3)
+
+############
+Changed homestate column: Removed “.” From states: State example – Ala.
+############
+=SUBSTITUTE(A1,”.”,””)
+
+############
+Chnaged class column: Removed “.” From class and made uppercase: Class example – Fr. (had to keep R-Fr. In mind)
+############
+=IF(OR(ISNUMBER(SEARCH({"R-Fr.","Fr.","R-So.","So.","R-Jr.","Jr.","R-Sr.","Sr."}, B1))),
+SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(B1,"R-Fr.","FR"),"Fr.","FR"),"R-So.","SO"),"So.","SO"),"R-Jr.","JR"),"Jr.","JR"),"R-Sr.","SR"),"Sr.","SR"),
+    B1)
