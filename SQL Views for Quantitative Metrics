@@ -1,0 +1,106 @@
+##########
+Offensive Players
+##########
+
+CREATE VIEW offensive_players as (
+SELECT * 
+FROM players
+WHERE position IN ('FB','WR/RB','RB/WR','TE/OL','RG','WR','OL','TE','RB/TE','RB','ATH','QB')
+
+##########
+Defensive Players
+##########
+
+CREATE VIEW defensive_players as (
+SELECT * 
+FROM players
+WHERE position IN ('DE','DB','LB','DL','LCB','SS')
+
+##########
+Special Teams Players
+##########
+
+CREATE VIEW special_teams_players as (
+SELECT * 
+FROM players
+WHERE position IN ('ST','LS','PK','KP','K','SN','PK/P','P','P/PK')
+
+##########
+Blue chip Recruits - players w/ 4 or 5 stars
+##########
+
+CREATE VIEW blue_chip as (
+SELECT * 
+FROM players
+WHERE recruiting_stars IN ('4','5')
+
+##########
+Upperclassmen Players
+##########
+
+CREATE VIEW upperclassmen as (
+SELECT * 
+FROM players
+WHERE class IN ('JR','SR')
+
+
+##########
+Percent of team w/ 4 & 5 stars by year:
+##########
+SELECT 
+CEIL((COUNT(CASE WHEN recruiting_stars IN ('4','5') THEN 1 END)/COUNT(*)::NUMERIC)*100) AS percent_by_roster, season
+FROM players
+GROUP BY season
+ORDER BY 1 desc
+
+#########
+Percent of team w/ 4 & 5 stars on offense vs defense by year:
+##########
+WITH offensive_bluechips AS (
+  SELECT *
+  FROM offensive_players
+  INTERSECT
+  SELECT *
+  FROM bluechip_recruits
+), defensive_bluechips AS (
+  SELECT *
+  FROM defensive_players
+  INTERSECT
+  SELECT *
+  FROM bluechip_recruits
+), total_players AS (
+  SELECT COUNT(*) AS total_count, season
+  FROM players
+  GROUP BY season
+), combined_counts AS (
+  SELECT COUNT(*) AS offensive_count, season
+  FROM offensive_bluechips
+  GROUP BY season
+), combined_counts_2 AS (
+  SELECT COUNT(*) AS defensive_count, season
+  FROM defensive_bluechips
+  GROUP BY season
+)
+SELECT 
+  combined_counts.offensive_count,
+  combined_counts_2.defensive_count,
+  total_players.total_count,
+  combined_counts.season
+FROM 
+  combined_counts 
+  JOIN combined_counts_2 ON combined_counts.season = combined_counts_2.season
+  JOIN total_players ON combined_counts.season = total_players.season
+ORDER BY combined_counts.season ASC
+
+##########
+Count of 4,5 star players by home state by year:
+##########
+SELECT COUNT(*),home_state, season
+FROM bluechip_recruits
+GROUP BY 2,3
+ORDER BY 3
+
+
+
+
+
