@@ -1,1 +1,34 @@
-tbd
+Created 2 Datasets
+1. Alabama Info
+2. Record_since_2007
+
+Inside the Alabama Info Dataset is the players and year_breakdown tables. 
+Inside the Record_since_2007 Dataset is the record_since_2007 table.
+
+Table Breakdowns:
+
+Players
+Home_state: String
+Class: String
+Position: String
+Height: Integer
+Weight: Integer
+Name: String
+Season: Date
+Recruiting_Stars: String
+
+Year_Breakdown
+Season: Date
+Recruiting_Ranking: Integer
+Wins: Integer
+Losses: Integer
+Final_AP_Ranking: Integer
+
+Recod_Since_2007
+Team: String
+Wins: Integer
+Losses: Integer
+
+All tables were exported as csv files from PgAdmin after all data manipulation was done, 
+and then uploaded in Google Big Query using the create table interface.
+
