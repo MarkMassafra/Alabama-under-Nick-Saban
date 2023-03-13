@@ -14,7 +14,7 @@ Percent of team w/ 4 & 5 stars on offense vs defense by year:
 
 WITH offensive_bluechips AS (
   SELECT *
-  FROM offensive_players
+  FROM offensive_players - View created
   INTERSECT
   SELECT *
   FROM bluechip_recruits
@@ -44,8 +44,10 @@ SELECT
   combined_counts.season
 FROM 
   combined_counts 
-  JOIN combined_counts_2 ON combined_counts.season = combined_counts_2.season
-  JOIN total_players ON combined_counts.season = total_players.season
+  JOIN combined_counts_2 
+  ON combined_counts.season = combined_counts_2.season
+  JOIN total_players 
+  ON combined_counts.season = total_players.season
 ORDER BY combined_counts.season ASC
 
 ################################################
