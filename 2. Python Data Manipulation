@@ -6,7 +6,7 @@ Changed height from feet'inches to total in inches. Example: 6'1 to 73.
 #First Sheet of new Excel File
 import pandas as pd
 
-#creat a function that splits the height based on the apostrophe. returns the height in inches
+#create a function that splits the height based on the apostrophe. returns the height in inches
 def convert_to_inches(height):
     feet, inches = height.split("'")
     if inches.strip() == "":
