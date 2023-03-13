@@ -1,1 +1,32 @@
-tbd
+***************************************************
+Total Blue Chip Players on Offense vs Defense Sheet
+***************************************************
+
+Position Breakdown Calculated Field:
+if contains([Position],'QB') or CONTAINS([Position],'FB')
+or CONTAINS([Position],'ATH') or CONTAINS([Position],'OL')
+or CONTAINS([Position],'RB') or CONTAINS([Position],'RB/TE')
+or CONTAINS([Position],'RB/WR') or CONTAINS([Position],'RG')
+or CONTAINS([Position],'TE') or CONTAINS([Position],'TE/OL')
+or CONTAINS([Position],'WR') or CONTAINS([Position],'WR/RB')
+then 'Offense'
+elseif contains([Position],'DB') or CONTAINS([Position],'DE')
+or CONTAINS([Position],'DL') or CONTAINS([Position],'LB')
+or CONTAINS([Position],'LCB') or CONTAINS([Position],'SS')
+then 'Defense'
+elseif contains([Position],'K') or CONTAINS([Position],'KP')
+or CONTAINS([Position],'LS') or CONTAINS([Position],'P')
+or CONTAINS([Position],'P/PK') or CONTAINS([Position],'PK')
+or CONTAINS([Position],'PK/P') or CONTAINS([Position],'SN')
+then 'Special Teams'
+end
+
+*********************************************************
+Total # of Blue Chip vs. Non Blue Chips Players on Roster
+*********************************************************
+
+Blue Chip vs. Non Blue Chip Calculated Field:
+if contains([Recruiting Stars],'4') or CONTAINS([Recruiting Stars],'5')
+then 'Blue Chip'
+else'Non Blue-Chip'
+end
