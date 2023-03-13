@@ -17,24 +17,24 @@ WITH offensive_bluechips AS (
   FROM offensive_players - View created
   INTERSECT
   SELECT *
-  FROM bluechip_recruits
+  FROM bluechip_recruits - View Created
 ), defensive_bluechips AS (
   SELECT *
-  FROM defensive_players
+  FROM defensive_players - View created
   INTERSECT
   SELECT *
-  FROM bluechip_recruits
+  FROM bluechip_recruits - View Created
 ), total_players AS (
   SELECT COUNT(*) AS total_count, season
   FROM players
   GROUP BY season
 ), combined_counts AS (
   SELECT COUNT(*) AS offensive_count, season
-  FROM offensive_bluechips
+  FROM offensive_bluechips - View Created
   GROUP BY season
 ), combined_counts_2 AS (
   SELECT COUNT(*) AS defensive_count, season
-  FROM defensive_bluechips
+  FROM defensive_bluechips - View Created
   GROUP BY season
 )
 SELECT 
